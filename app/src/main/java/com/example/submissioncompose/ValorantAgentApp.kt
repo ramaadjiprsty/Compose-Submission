@@ -2,6 +2,7 @@ package com.example.submissioncompose
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Person
@@ -31,6 +32,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.submissioncompose.ui.navigation.Screen
 import com.example.submissioncompose.ui.screen.about.AboutScreen
 import com.example.submissioncompose.ui.screen.home.HomeScreen
+import com.example.submissioncompose.ui.screen.home.SearchBar
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -69,7 +71,7 @@ fun ValorantAgentApp(
                 navigationIcon = {
                     if (navController.previousBackStackEntry != null) {
                         IconButton(onClick = { navController.popBackStack() }) {
-                            Icon(Icons.Filled.ArrowBack, contentDescription = "Back")
+                            Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
                         }
                     }
                 }
