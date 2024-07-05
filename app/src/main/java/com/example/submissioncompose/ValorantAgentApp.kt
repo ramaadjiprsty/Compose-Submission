@@ -27,12 +27,16 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.submissioncompose.ui.navigation.Screen
 import com.example.submissioncompose.ui.screen.about.AboutScreen
+import com.example.submissioncompose.ui.screen.detail.DetailScreen
+import com.example.submissioncompose.ui.screen.detail.DetailViewModel
 import com.example.submissioncompose.ui.screen.home.HomeScreen
 import com.example.submissioncompose.ui.screen.home.HomeViewModel
 import com.example.submissioncompose.ui.theme.blackV
@@ -49,6 +53,8 @@ fun ValorantAgentApp(
     val currentRoute = navBackStackEntry?.destination?.route
     var actionBarTitle by remember { mutableStateOf("valorant") }
     val viewModel: HomeViewModel = viewModel()
+    val detailViewModel: DetailViewModel = viewModel()
+
 
     Scaffold(
         topBar = {
@@ -63,27 +69,29 @@ fun ValorantAgentApp(
                         },
                 colors = TopAppBarDefaults.topAppBarColors(blackV),
                 actions = {
-                    IconButton(onClick = {} ) {
-                        Icon(
-                            imageVector = Icons.Default.Favorite,
-                            contentDescription = "Favorite",
-                            tint = redV
-                        )
-                    }
-                    IconButton(onClick = {
-                        navController.navigate(Screen.About.route) {
-                            launchSingleTop = true
+                    if (currentRoute == Screen.Home.route) {
+                        IconButton(onClick = {} ) {
+                            Icon(
+                                imageVector = Icons.Default.Favorite,
+                                contentDescription = "Favorite",
+                                tint = redV
+                            )
                         }
-                    }) {
-                        Icon(
-                            imageVector = Icons.Default.Person,
-                            contentDescription = "About",
-                            tint = redV
-                        )
+                        IconButton(onClick = {
+                            navController.navigate(Screen.About.route) {
+                                launchSingleTop = true
+                            }
+                        }) {
+                            Icon(
+                                imageVector = Icons.Default.Person,
+                                contentDescription = "About",
+                                tint = redV
+                            )
+                        }
                     }
                 },
                 navigationIcon = {
-                    if (navController.previousBackStackEntry != null) {
+                    if (navController.currentDestination?.route != null) {
                         IconButton(onClick = { navController.popBackStack() }) {
                             Icon(
                                 Icons.Filled.ArrowBack,
@@ -102,12 +110,24 @@ fun ValorantAgentApp(
             modifier = Modifier.padding(innerPadding),
         ) {
             composable(Screen.Home.route) {
-                HomeScreen(viewModel = viewModel)
+                HomeScreen(
+                    viewModel = viewModel,
+                    navHostController = navController,
+                    navigateToDetail = { agentUuid ->
+                        navController.navigate(Screen.Detail.createRoute(agentUuid))
+                    })
                 actionBarTitle = "Valorant"
             }
             composable(Screen.About.route) {
                 AboutScreen()
                 actionBarTitle = "About"
+            }
+            composable(
+                route = Screen.Detail.route,
+                arguments = listOf(navArgument("agentUuid") {type = NavType.StringType})
+            ) {
+                val agentUuid = it.arguments?.getString("agentUuid")
+                DetailScreen(agentId = agentUuid!!, viewModel = detailViewModel)
             }
         }
 
