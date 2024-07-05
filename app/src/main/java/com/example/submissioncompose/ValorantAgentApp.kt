@@ -70,13 +70,6 @@ fun ValorantAgentApp(
                 colors = TopAppBarDefaults.topAppBarColors(blackV),
                 actions = {
                     if (currentRoute == Screen.Home.route) {
-                        IconButton(onClick = {} ) {
-                            Icon(
-                                imageVector = Icons.Default.Favorite,
-                                contentDescription = "Favorite",
-                                tint = redV
-                            )
-                        }
                         IconButton(onClick = {
                             navController.navigate(Screen.About.route) {
                                 launchSingleTop = true
@@ -84,14 +77,14 @@ fun ValorantAgentApp(
                         }) {
                             Icon(
                                 imageVector = Icons.Default.Person,
-                                contentDescription = "About",
+                                contentDescription = "about_page",
                                 tint = redV
                             )
                         }
                     }
                 },
                 navigationIcon = {
-                    if (navController.currentDestination?.route != null) {
+                    if (navController.currentDestination?.route != Screen.Home.route) {
                         IconButton(onClick = { navController.popBackStack() }) {
                             Icon(
                                 Icons.Filled.ArrowBack,

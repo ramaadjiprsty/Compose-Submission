@@ -73,7 +73,6 @@ fun Detail(
             modifier = Modifier
                 .fillMaxSize()
                 .background(blackV)
-                .verticalScroll(rememberScrollState())
         )
             Box(
                 modifier = Modifier,
@@ -107,47 +106,6 @@ fun Detail(
                         letterSpacing = 1.sp,
                         color = Color.White
                     )
-//                    Text(
-//                        text = "ABILITIES",
-//                        fontSize = 32.sp,
-//                        letterSpacing = 1.sp,
-//                        fontFamily = tungstenFont,
-//                        color = Color.White
-//                    )
-//                    Image(
-//                        painter = rememberAsyncImagePainter(model = dataItem.value?.abilities?.get(0)?.displayIcon),
-//                        contentDescription = "",
-//                        modifier = Modifier.size(40.dp)
-//                    )
-//                    Text(
-//                        text = dataItem.value?.abilities?.get(0)?.displayName ?: "",
-//                        fontSize = 16.sp,
-//                        letterSpacing = 1.sp,
-//                        color = Color.White
-//                    )
-//                    Text(
-//                        text = dataItem.value?.abilities?.get(0)?.description ?: "",
-//                        fontSize = 16.sp,
-//                        letterSpacing = 1.sp,
-//                        color = Color.White
-//                    )
-//                    Image(
-//                        painter = rememberAsyncImagePainter(model = dataItem.value?.abilities?.get(0)?.displayIcon),
-//                        contentDescription = "",
-//                        modifier = Modifier.size(40.dp)
-//                    )
-//                    Text(
-//                        text = dataItem.value?.abilities?.get(0)?.displayName ?: "",
-//                        fontSize = 16.sp,
-//                        letterSpacing = 1.sp,
-//                        color = Color.White
-//                    )
-//                    Text(
-//                        text = dataItem.value?.abilities?.get(0)?.description ?: "",
-//                        fontSize = 16.sp,
-//                        letterSpacing = 1.sp,
-//                        color = Color.White
-//                    )
                 }
             }
         }
