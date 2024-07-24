@@ -6,4 +6,5 @@ sealed class Screen(val route: String) {
         fun createRoute(agentUuid: String) = "detail/$agentUuid"
     }
     data object About : Screen("about")
+    data object Favorite : Screen("favorite")
 }

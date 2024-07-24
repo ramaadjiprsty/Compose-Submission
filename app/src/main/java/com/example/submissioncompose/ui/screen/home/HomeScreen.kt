@@ -65,7 +65,6 @@ fun AgentItem(
     navHostController: NavHostController,
     navigateToDetail: (String) -> Unit,
 ) {
-//    var agentUuid by remember { mutableStateOf(dataItem.uuid) }
     Surface(
         color = blueV,
         modifier = modifier

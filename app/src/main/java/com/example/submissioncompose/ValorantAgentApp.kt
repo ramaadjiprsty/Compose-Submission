@@ -37,6 +37,7 @@ import com.example.submissioncompose.ui.navigation.Screen
 import com.example.submissioncompose.ui.screen.about.AboutScreen
 import com.example.submissioncompose.ui.screen.detail.DetailScreen
 import com.example.submissioncompose.ui.screen.detail.DetailViewModel
+import com.example.submissioncompose.ui.screen.favorite.FavoriteScreen
 import com.example.submissioncompose.ui.screen.home.HomeScreen
 import com.example.submissioncompose.ui.screen.home.HomeViewModel
 import com.example.submissioncompose.ui.theme.blackV
@@ -81,6 +82,16 @@ fun ValorantAgentApp(
                                 tint = redV
                             )
                         }
+                        IconButton(onClick = {
+                            navController.navigate(Screen.Favorite.route) {
+                                launchSingleTop = true
+                            }
+                        }) {
+                            Icon(imageVector = Icons.Default.Favorite,
+                                contentDescription = "favorite_page",
+                                tint = redV
+                            )
+                        }
                     }
                 },
                 navigationIcon = {
@@ -114,6 +125,10 @@ fun ValorantAgentApp(
             composable(Screen.About.route) {
                 AboutScreen()
                 actionBarTitle = "About"
+            }
+            composable(Screen.Favorite.route) {
+                FavoriteScreen()
+                actionBarTitle = "Favorite"
             }
             composable(
                 route = Screen.Detail.route,
